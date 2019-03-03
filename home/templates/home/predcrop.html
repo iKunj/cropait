@@ -1,0 +1,72 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Prediction Analysis</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        .goog-te-banner-frame.skiptranslate{display:none!important;}
+        body{top:0px!important;}
+    </style>
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <div class="container-fluid" align="center">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary" style="color:green;" align="Center">Possible predicted data for your farm</h4>
+                </div>
+                <div class="card-body">
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                        <div class="container-fluid" style="background:#fff; padding:5px 5px; border:1px; border-radius:6px;">
+                        <h5 style="color:orange;">Crop Name: {{name}}</h5>
+                        </div>
+                        <hr>
+                        <div class="container-fluid" style="background:#fff; padding:5px 5px; border:1px; border-radius:6px;">
+                        <h5 style="color:orange;">Average Rainfall: {{rain}} mm</h5>
+                        </div>
+                        <hr>
+                        <div class="container-fluid" style="background:#fff; padding:5px 5px; border:1px; border-radius:6px;">
+                        <h5 style="color:orange;">Average Temperature: {{temp}}</h5>
+                        </div>
+                        <hr>
+                        <div class="container-fluid" style="background:#fff; padding:5px 5px; border:1px; border-radius:6px;">
+                        <h5 style="color:orange;">Predicted Soil Type: {{soil_Type}}</h5>
+                        </div>
+                        <hr>
+                        <h5 style="color:orange;">Do you think the data is correct?</h5>
+                        <form action="{% url 'predresyes-home' %}" method="post">
+                                {% csrf_token %}
+                            <input type="submit" style="padding:10px 5px;" class="btn btn-success btn-block" value="Yes">
+                        </form>
+                        <hr>
+                        <form action="{% url 'predresno-home' %}" method="post"><!--{% url 'predresno-home' %} -->
+                                {% csrf_token %}
+                            <input type="submit" style="padding:10px 5px;" class="btn btn-danger btn-block" value="No">
+                        </form>
+                        <hr>
+                        <form action="{% url 'predresyes-home' %}" method="post"> <!--{% url 'predresyes-home' %} -->
+                                {% csrf_token %}
+                            <input type="submit" style="padding:10px 5px;" class="btn btn-primary btn-block" value="Don't Know">
+                        </form>
+                        <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div> 
+        </div>    
+    </div>
+</div>
+</div>
+</body>
+</html>

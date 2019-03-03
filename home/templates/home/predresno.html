@@ -1,0 +1,50 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Prediction Analysis</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        .goog-te-banner-frame.skiptranslate{display:none!important;}
+        body{top:0px!important;}
+    </style>
+</head>
+<body id="page-top">
+  <div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <div class="container-fluid" align="center">
+
+        <!-- Page Heading -->
+        <br>
+           <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h1 class="h3 mb-2 text-gray-800" align="center">Enter Data for prediction</h1>
+              </div>
+            <div class="card-body">
+              <br>
+           <form action="{% url 'predresno2-home' %}" method="post">
+              {% csrf_token %}
+              <h5 style="margin:auto; padding:10px 5px;">Average Rainfall : </h5><input type="text" style="margin:auto; padding:5px 5px; border:2px solid green; border-radius:9px;"placeholder="Enter avg Rainfall: " name="rain" required>
+              <br>
+                 <h5 style="margin:auto; padding:10px 5px;">Average Temperature :</h5> <input type="text" style="margin:auto; padding:5px 5px; border:2px solid green; border-radius:9px;" placeholder="Enter avg Temperature" name="temp" required>
+                <br>
+                <h5 style="margin:auto; padding:10px 5px;">Soil Type:</h5><input type="text" style="margin:auto; padding:5px 5px; border:2px solid green; border-radius:9px;" placeholder="Enter soil TYpe" name="soil" required>
+                <hr>
+                <button style="margin:auto; padding:5px 5px;" class="btn btn-success btn-lg">Submit</button>
+                <hr>
+              </form>
+            </div>
+          </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

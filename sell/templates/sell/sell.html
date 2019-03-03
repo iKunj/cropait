@@ -1,0 +1,105 @@
+<!-- Loading of the base template  -->
+{% extends "home/base.html" %}
+
+<!-- All the scripts, images, and static content is loaded with this statement -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Code blocks are useful so as all the similar content are there in one template and rest can be added according to the page -->
+    {% block head %}
+        <title>Farmer - Sell Here</title>
+    {% endblock head %}
+    <!-- End of code block head -->
+</head>
+<body>
+    {% block content %}
+    <!-- Various Activites that are available to the farmer -->
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary" align="Center">Actions</h6>
+            </div>
+            <div class="card-body">
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <div class="white-box analytics-info">
+                        <a href="{% url 'sell-add' %}"><h5 class="box-title" align="Center"><b>Add</b></h5></a>
+                    </div>
+                </div>
+            </div>
+    </div> 
+
+    <!-- List of all the crops given by the farmer -->
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary" align="Center">Your Crops</h6>
+            </div>
+            <div class="card-body">
+                {% for crops_d in crops %}
+                    <!-- No Company has confirmed the order and its still in the list -->
+                    {% if crops_d.flag == 0 %}
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h4 class="box-title" align="Center"><b>{{ crops_d.crop_name }}</b></h4>
+                            <h5 class="box-title" align="Center">Rs. {{ crops_d.amount }} (Per KG.)</h5>
+                            <h5 class="box-title" align="Center">{{ crops_d.quantity }}  (KG.)</h5>
+                        </div>
+                    </div>
+                <hr>
+                <!-- Order is confirmed by the company -->
+                {% else %}
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h4 class="box-title" align="Center"><b>{{ crops_d.crop_name }}</b></h4>
+                            <h5 class="box-title" align="Center">Rs. {{ crops_d.amount }} (Per KG.)</h5>
+                            <h5 class="box-title" align="Center">{{ crops_d.quantity }}  (KG.)</h5>
+                            <h5 class="box-title" align="Center">Ordered Confirmed by Company</h5>
+                        </div>
+                    </div>
+                {% endif %}
+                <hr>
+                {% endfor %} 
+            </div>
+    </div>
+
+    <!-- Buyer or company's demand for certain crop will be displayed in this card -->
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary" align="Center">Buyers Demand</h6>
+            </div>
+            <div class="card-body">
+                {% for buy_d in buy %}
+                <!-- Not Confirmed by the farmer -->
+                    {% if buy_d.flag == 0 %}
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h4 class="box-title" align="Center"><b>{{ buy_d.crop_name }}</b></h4>
+                            <h5 class="box-title" align="Center">Rs. {{ buy_d.amount }}</h5>
+                            <h5 class="box-title" align="Center">{{ buy_d.quantity }}</h5>
+                            <h5 class="box-title" align="Center">{{ buy_d.deadline }}</h5>
+                            <form action="{% url 'sell_add_confirm_attach' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="text" name="id" value="{{ buy_d.id }}" hidden>
+                                <input type="submit" value="Sell" style="padding-top:10px; " class="btn btn-success btn-block">
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Farmer has accepted the order -->
+                    {% else %}
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                            <div class="white-box analytics-info">
+                                <h4 class="box-title" align="Center"><b>{{ buy_d.crop_name }}</b></h4>
+                                <h5 class="box-title" align="Center">Rs. {{ buy_d.amount }}</h5>
+                                <h5 class="box-title" align="Center">{{ buy_d.quantity }}</h5>
+                                <h5 class="box-title" align="Center">{{ buy_d.deadline }}</h5>
+                                <h5 class="box-title" align="Center"><b>Confirmed Order</b></h5>
+                            </div>
+                    </div>
+                    {% endif %}
+                <hr>
+                {% endfor %} 
+            </div>
+    </div>                
+    {% endblock %}
+</body>
+</html>

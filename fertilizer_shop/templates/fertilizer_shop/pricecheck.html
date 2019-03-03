@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% csrf_token %}
+
+<html>
+
+
+<body>
+    {% block content %}
+    <h1>{{status}}</h1>
+    {% endblock content %}
+</body>
+</html>
