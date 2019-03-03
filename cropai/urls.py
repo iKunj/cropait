@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('fertilizer/', fertilizer_views.home, name='fertilizer-home'),
     path('news/', news_views.home, name='news-home'),
+    path('register/',users_view.register, name='register'),
     
     #Policy 
     path('policy/', policy_views.home, name='policy-home'),
