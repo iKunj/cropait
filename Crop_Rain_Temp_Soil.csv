@@ -1,0 +1,25 @@
+crop ,rainfall,temperature,soil
+Rice,125,21,heavy-clayey
+Wheat,50,19,well-drained-clay
+Maize,95,21,deep-heavy clay
+Millets,50,27,Sandy-loam
+Bajra,43,30,Sandy-loam
+Pulses,43,24,Sandy-loam
+Lentil,38,20,clayey loam
+Oilseeds,40,23,clayey loam
+Groundnut,63,20,well-drained-sandy loams
+Sugarcane,125,63,Well-drained alluvium
+Sugar beet,37,18,Well-drained-loamy soil
+Cotton,85,23,Well-drained-loamy soil
+Tea,175,25,light loamy Soil
+Coffee,175,22,well-drained alluvial Soil
+Cocoa,175,27,well-drained alluvium
+Rubber,200,14,well-drained alluvial Soil
+Jute,200,30,well drained alluvial Soil
+Flax,18,15,clayey loam
+Coconut,175,14,sandy alluvial
+Oil-palm,325,28,alluvial soil
+Clove,225,30,Red alluvial Soil
+Black Pepper,250,28,red-loam
+Cardamon,275,23,Well drained alluvial Soil
+Turmeric,200,25,clayey loam 
